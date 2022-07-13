@@ -19,7 +19,9 @@ public class Exercise3 {
 
 
     public <T extends Comparable<T>> boolean bstEstrictamenteBinario(BST<T> a){
-
+    	a.preOrder();
+    	if(a.getCountR() == a.getCountL())
+    		return true;
         return false;
     }
 }

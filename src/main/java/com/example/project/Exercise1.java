@@ -21,7 +21,10 @@ public class Exercise1 {
 
 
     public <T extends Comparable<T>> boolean bstSimilares(BST<T> a1, BST<T> a2){
-
+        a1.preOrder();
+    	a2.preOrder();
+    	if(a1.getCountR() == a2.getCountR() && a1.getCountL() == a2.getCountL())
+    		return true;
         return false;
     }
 }

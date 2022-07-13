@@ -3,6 +3,8 @@ package com.example.project;
 public class BST<E extends Comparable<E>> {
     // Atributos
     protected Node<E> root;
+    int countR = 0; 
+    int countL = 0;
 
     // Constructores de un BST vacio
     public BST() {
@@ -18,10 +20,10 @@ public class BST<E extends Comparable<E>> {
         if (actual == null) {
             res = new Node<E>(x);
         } else {
-            // buscamos el lugar para inserción
+            // buscamos el lugar para inserciÃ³n
             int resC = actual.data.compareTo(x);
             if (resC == 0)
-                return null;
+                return actual;
             if (resC < 0)
                 res.right = insertNode(x, actual.right);
             else
@@ -56,16 +58,16 @@ public class BST<E extends Comparable<E>> {
 
     // Elimina el menor de la izquierda de un nodo
     protected Node<E> minRemove(Node<E> actual) {
-        if (actual.left != null) { // busca el mínimo
+        if (actual.left != null) { // busca el mÃ­nimo
             actual.left = minRemove(actual.left);
-        } else { // elimina el mínimo
+        } else { // elimina el mÃ­nimo
             actual = actual.right;
         }
         return actual;
     }
 
     protected Node<E> minRecover(Node<E> actual) {
-        if (actual.left == null) { // busca el mínimo
+        if (actual.left == null) { // busca el mÃ­nimo
             return actual;
         }
         return minRecover(actual.left);
@@ -124,14 +126,26 @@ public class BST<E extends Comparable<E>> {
 
     protected String preOrder(Node<E> actual) {
         String res = actual.data.toString() + " ";
-        if (actual.left != null)
+        if (actual.left != null) {
             res += preOrder(actual.left);
-        if (actual.right != null)
+            countL++;
+        }
+        if (actual.right != null) {
             res += preOrder(actual.right);
+            countR++;
+        }
         return res;
     }
+    // Getters de contadores de nodos izq y der
+    public int getCountR() {
+		return countR;
+	}
 
-    public static void main(String [] args){
+	public int getCountL() {
+		return countL;
+	}
+
+	public static void main(String [] args){
         BST<Integer> tree = new BST<Integer>();
 
         Integer array [] = {1, 2,3, 4, 5};

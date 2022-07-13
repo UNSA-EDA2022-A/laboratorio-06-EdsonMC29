@@ -21,7 +21,8 @@ public class Exercise2 {
 
 
     public <T extends Comparable<T>> boolean bstIguales(BST<T> a1, BST<T> a2){
-
+        if(a1.preOrder().equals(a2.preOrder()) && a1.postOrder().equals(a2.postOrder()))
+    		return true;
         return false;
     }
 }
